@@ -5,8 +5,7 @@ function Header() {
   return (
     <header className='header'> 
         <div className="contendor barra">
-            <Link to ="/"
-               className="logo">
+            <Link to ="/">
                 <img 
                     className='logo'
                     src={logo}
