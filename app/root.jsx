@@ -74,3 +74,20 @@ function Document ({children}) {
         </html>
     )
 }
+
+export function CatchBoundary(){
+    const error = useCatch()
+    return (
+        <Document>
+            <p className='error'>{error.status} {error.statusText}</p>
+        </Document>
+    )
+}
+
+export function ErrorBoundary({error}) {
+    return (
+        <Document>
+            <p className='error'>{error.status} {error.statusText}</p>
+        </Document>
+    )
+}
