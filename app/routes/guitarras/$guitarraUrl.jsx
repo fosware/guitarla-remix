@@ -20,7 +20,7 @@ export async function loader({params}){
 export function meta ({data}) {
     if(!data) {
         return {
-            title:'Guitarra no encontrada',
+            title:'GuitarLA - Guitarra no encontrada',
             descripcion: `Guitarras, venta de guitarras, guitarra no encontrda`
         }
     }

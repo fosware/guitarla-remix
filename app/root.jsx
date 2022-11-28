@@ -3,7 +3,9 @@ import {
     Links,
     Outlet,
     Scripts, 
-    LiveReload
+    LiveReload,
+    useCatch,
+    Link
 } from '@remix-run/react'
 import styles from '~/styles/index.css'
 import Header from '~/components/header'
@@ -80,6 +82,10 @@ export function CatchBoundary(){
     return (
         <Document>
             <p className='error'>{error.status} {error.statusText}</p>
+            <Link
+                to='/'
+                className='error-enlace'
+            >Regresar a la página principal</Link>
         </Document>
     )
 }
@@ -88,6 +94,10 @@ export function ErrorBoundary({error}) {
     return (
         <Document>
             <p className='error'>{error.status} {error.statusText}</p>
+            <Link
+                to='/'
+                className='error-enlace'
+            >Regresar a la página principal</Link>           
         </Document>
     )
 }
