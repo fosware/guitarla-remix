@@ -1,16 +1,16 @@
 import { useLoaderData } from '@remix-run/react'
-import Post from '~/components/post'
+import ListadoPosts from '~/components/listado-posts'
 import { getPosts } from '~/models/post.server'
 import styles from '~/styles/blog.css'
 
 export function meta() {
   return {
-      title: 'GuitarLA - Nuesto Blog',
-      description: 'GuitarLA - Blog de música y venta de guitarras'
+    title: 'GuitarLA - Nuesto Blog',
+    description: 'GuitarLA - Blog de música y venta de guitarras'
   }
-} 
+}
 
-export function links(){
+export function links() {
   return [
     {
       rel: 'stylesheet',
@@ -29,18 +29,10 @@ function Blog() {
 
   return (
     <main className="contenedor">
-      <h2 className="heading">Blog</h2>
-      <div className="blog">
-        {
-          posts.map( post => (
-            <Post 
-              key={post.id}
-              post={post.attributes}
-            />           
-          ))
-        }
-      </div>
-      
+      <ListadoPosts
+        posts={posts}
+      />
+
     </main>
   )
 }
