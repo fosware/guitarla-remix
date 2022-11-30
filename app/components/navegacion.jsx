@@ -9,15 +9,16 @@ function Navegacion() {
                 to="/"
                 className={location.pathname === '/' ? 'active' : ''}
             >Inicio</Link>
-            <Link
-                to="/guitarras"
-                className={location.pathname === '/guitarras' ? 'active' : ''}
-            >Tienda</Link>
+            
             <Link
                 to="/blog"
                 className={location.pathname === '/blog' ? 'active' : ''}
             >
                 Blog</Link>
+            <Link
+                to="/guitarras"
+                className={location.pathname === '/guitarras' ? 'active' : ''}
+            >Tienda</Link>
             <Link
                 to="/nosotros"
                 className={location.pathname === '/nosotros' ? 'active' : ''}

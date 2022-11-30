@@ -1,19 +1,17 @@
 
 import { useState } from "react"
-import { useLoaderData } from "@remix-run/react"
+import { useLoaderData, useOutletContext } from "@remix-run/react"
 import { getGuitarra } from "~/models/guitarras.server"
 
 export async function loader({params}){
     const { guitarraUrl } = params
     const guitarra = await getGuitarra(guitarraUrl)
-    
     if(guitarra.data.length === 0){
         throw new Response ('', {
             status: 404,
             statusText: 'Guitarra No encontrada'
         })
     }
-
     return guitarra
 }
 
@@ -24,7 +22,6 @@ export function meta ({data}) {
             descripcion: `Guitarras, venta de guitarras, guitarra no encontrda`
         }
     }
-
     return {
         title: `GuitarLA - ${data.data[0].attributes.nombre}`,
         descripcion: `Guitarras, venta de guitarras, guitarra ${data.data[0].attributes.nombre}`
@@ -35,18 +32,20 @@ export function meta ({data}) {
 
 
 function Guitarra() {
+
+    const { agregarCarrito } = useOutletContext()
     const [cantidad, setCantidad] = useState(0)
     const guitarra = useLoaderData()
     const {nombre, descripcion, imagen, precio} = guitarra.data[0].attributes
 
+
+
     const handleSubmit = e => {
         e.preventDefault();
-
         if( cantidad < 1){
             alert('Debes seleccionar una cantidad')
             return
         } 
-        
         const guitarraSeleccionada = {
             id: guitarra.data[0].id,
             imagen: imagen.data.attributes.url,
@@ -54,8 +53,7 @@ function Guitarra() {
             precio,
             cantidad
         }
-
-        console.log(guitarraSeleccionada)
+        agregarCarrito(guitarraSeleccionada)
 
     }
 

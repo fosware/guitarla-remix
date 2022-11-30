@@ -13,8 +13,6 @@ export function links() {
 
 
 function Blog() {
-
-
   return (
     <main className="contenedor">
       <Outlet />
