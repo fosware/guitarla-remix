@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
     Meta, 
     Links,
@@ -52,7 +52,12 @@ export function links (){
 
 export default function App() {
     
-    const [carrito, setCarrito] = useState([])
+    const carritoLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('carrito')) ?? [] : null
+    const [carrito, setCarrito] = useState( carritoLS )
+
+    useEffect( ()=>{
+        localStorage.setItem('carrito', JSON.stringify(carrito))
+    }, [carrito] )
 
     const agregarCarrito = guitarra => {
         // identificar si ya exite esa guitarra
@@ -88,13 +93,20 @@ export default function App() {
         setCarrito(carritoActualizado)
     }
 
+    const eliminarGuitarra = id => {
+       const carritoActualizado = carrito.filter(guitarraState => guitarraState.id !== id)
+       setCarrito(carritoActualizado)
+
+    }
+
     return (
         <Document>
             <Outlet
                 context = {{
                     agregarCarrito,
                     carrito, 
-                    actualizarCantidad
+                    actualizarCantidad,
+                    eliminarGuitarra
                 }}
             />
         </Document>
